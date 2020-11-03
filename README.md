@@ -3,8 +3,8 @@ High-performance computing (HPC) in Scripps Research
 
 This repository worked as class materials and was tested on Garibaldi only.
 
----
-### Requirements
+
+## Requirements
 
 Modules or shell tools  
 
@@ -21,8 +21,8 @@ Datasets
 
 - Pruned 1000 Genomes Phase III as VCF.gz files (`/gpfs/sfchen/work/1000G`)
 
----
-### Cheat Sheet
+
+## Cheat Sheet
 
 **Shell commands**  
 
@@ -65,13 +65,13 @@ On Garibaldi: `module load git-lfs`
 3. `$PBSREMOEDIR`
 4. `$PBSTMPDIR`
 
----
-### Job script template
+
+## Job script template
 
 
----
 
-### Case study
+
+## Case study
 
 **1. Ancestry inference using PCA**  
 
@@ -82,9 +82,8 @@ On Garibaldi: `module load git-lfs`
 **3. Local ancestry inference with RFMix2**  
 
 
----
 
-### REFERENCE
+## REFERENCE
 
 1.  Scripps Reserach HPC (in Intranet) [https://intranet.scripps.edu/its/highperformancecomputing/index.html](https://intranet.scripps.edu/its/highperformancecomputing/index.html)
 2. HPC Challenges — A Perspective for General Data Analysis and Visualization [http://web.eecs.utk.edu/~huangj/hpc/hpc_intro.php](http://web.eecs.utk.edu/~huangj/hpc/hpc_intro.php)

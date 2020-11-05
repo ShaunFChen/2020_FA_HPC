@@ -1,0 +1,45 @@
+#!/bin/bash
+#PBS -l mem=8gb
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=24:00:00
+#PBS -M [username]@scripps.edu
+#PBS -m a
+
+
+# Load essential module on Garibaldi
+module load samtools
+module load plink2/1.90b3.42
+module load R
+
+
+# Enter working directory
+cd $PBS_O_WORKDIR 
+
+for i in {1..22}; do 
+    echo "Extracting ancestry markers chr${i} of 1000G"
+    bcftools view /gpfs/work/sfchen/1000G/ALL.chr${i}.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.clean.vcf.gz \
+      -R data/HDGP.lifted.sorted.fixref.bi.phased1KG.isec1KG.isec23andMe.geno.50-5-0.2_pairwise.pos \
+      -Oz \
+      -o TGP_chr${i}.vcf.gz
+      
+    echo "Tabixing chr${i} of 1000G"
+    tabix -f -p vcf TGP_chr${i}.vcf.gz
+done
+
+# Record vcf file list
+ls -v TGP_chr*.vcf.gz > TGP.vcf.gz.txt
+
+echo "Concatenate all chromsomes"
+bcftools concat -f TGP.vcf.gz.txt -Oz -o TGP.vcf.gz; tabix -f -p vcf TGP.vcf.gz
+
+echo "PCA analysis initiate"
+plink --vcf TGP.vcf.gz --pca 10 --out TGP_pca
+
+echo "Make plot"
+R --no-save TGP_pca.eigenvec data/1000G.tsv < tgp_pca.r
+
+echo "remove temp files"
+rm TGP_chr*.vcf.gz
+rm TGP.vcf.gz.txt
+
+echo "Done!!"

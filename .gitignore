@@ -1,0 +1,18 @@
+# ignore vcf and index
+*.vcf.gz
+*.tbi
+
+# ignore log files
+*.o*
+*.e*
+
+# ignore output figures
+*.png
+
+# ignore test notebook
+*.ipynb
+
+# ignore TGP-related file
+TGP.vcf.gz.txt
+TGP_pca.log
+TGP_pca.nosex

@@ -11,7 +11,7 @@ Basic introduction of high-performance computing (HPC) in Scripps Research. This
 
 0. `man`: format and display the on-line manual pages.
 0. `ssh`:  OpenSSH SSH client (remote login program).  
-0. `htop`: interactive process viewer. (`required_tools/htop`)  
+0. `scp`: secure copy (remote file copy program).
 0. `watch`: execute a program periodically, showing output fullscreen.
 0. `vim`, `nano`, `emacs`: programmers text editors.
 0. `history`: list command history.
@@ -46,10 +46,10 @@ Prerequisite on Garibaldi: `module load git-lfs`
 0. `qsub`: submit pbs job  
 		`-I`: Declares that the job is to be run "interactively".  
 		`-l`: Defines the resources that are required by the job and establishes a limit to the amount of resource that can be consumed. i.e. `mem=4gb`, `walltime=4:00:00`, `nodes=1:ppn=1`.  
-		`-N`: Declares a name for the job.  
-		`-v`: Expands the list of environment variables that are exported to the job. The variable list is a comma separated list of strings of the form variable or variable=value.  
 		`-M`: Declares the list of users to whom mail is sent by the execution server when it sends mail about the job.  
 		`-m`: Defines the set of conditions under which the execution server will send a mail message about the job.  The mail_options argument is a string which consists of either the single character "n", or one or more of the characters "a", "b", and "e". `a` mail is sent when the job is aborted by the batch system. `b`  mail is sent when the job begins execution. `e`  mail is sent when the job terminates.  
+		`-N`: Declares a name for the job.  
+		`-v`: Expands the list of environment variables that are exported to the job. The variable list is a comma separated list of strings of the form variable or variable=value.  
 0. `qdel`:  delete pbs batch job
 
 0. `module`: command interface to the Modules package  
@@ -122,16 +122,35 @@ Expected output: `figure_tgp_pca.png`
 It is sufficient to be done by `qsub -I`.
 
 ```
-bcftools convert --tsv2vcf ${input_txt_path} -f ${ref_fasta_path) -s ${subject_ID} -Ov -o ${output_filename}.vcf
+bcftools convert --tsv2vcf ${input_txt_path} -f ${ref_fasta_path) -s ${subject_ID} -Oz -o ${output_filename}.vcf.gz
+tabix -p vcf ${output_filename}.vcf.gz
 ```
 
 GRCh37 on Gariabldi: `/gpfs/work/sfchen/human_g1k_v37.fasta`
 
-**1. Global acnestry inference with ADMIXTURE**  
+**1. Local ancestry inference with RFMix2**  
 
-**2. Local ancestry inference with RFMix2**  
+sample input: `/gpfs/work/sfchen/HGDP`
+
+```
+qsub -v input=[vcf_gz_path] 1_ancestry_inference.pbs
+```
+
+sample metadata:
+
+```
+Sample_ID       sub_pop          sup_pop
+HGDP00001       Brahui           CENTRAL_SOUTH_ASIA
+HGDP01041       Pima             AMERICA
+HGDP00977       Han              EAST_ASIA
+HGDP01062       Sardinian        EUROPE
+HGDP00580       Druze            MIDDLE_EAST
+HGDP01419       BantuKenya       AFRICA
+HGDP00664       Bougainville     OCEANIA
+```
 
 
+<p align="center"><img src="/data/HGDP00001.png?raw=true"/></p>
 
 ## REFERENCE
 

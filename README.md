@@ -113,7 +113,7 @@ qsub -N PCA_TGP 0_TGP_PCA.pbs
 
 Expected output: `figure_tgp_pca.png`
 
-<p align="center"><img src="data/pca.png"/></p>
+<p align="center"><img src="/data/pca.png?raw=true"/></p>
 
 ### Extra practice: supervised ancestry inference
 

@@ -6,7 +6,6 @@
 *.o*
 *.e*
 
-
 # ignore test notebook
 *.ipynb
 
@@ -14,3 +13,6 @@
 TGP.vcf.gz.txt
 TGP_pca.log
 TGP_pca.nosex
+
+# ignore DS_Store
+.DS_Store

@@ -36,7 +36,7 @@ echo "PCA analysis initiate"
 plink --vcf TGP.vcf.gz --pca 10 --out TGP_pca
 
 echo "Make plot"
-R --no-save TGP_pca.eigenvec data/1000G.tsv < tgp_pca.r
+R --no-save TGP_pca.eigenvec data/1000G.tsv < required_tools/tgp_pca.r
 
 echo "remove temp files"
 rm TGP_chr*.vcf.gz

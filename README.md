@@ -26,12 +26,16 @@ Prerequisite on Garibaldi: `module load git-lfs`
 
 0. `git init`: Create an empty git repository or reinitialize an existing one.  
 0. `git clone`: Clone a repository into a new directory.
+
+0. `git status`: Show the working tree status.
 0. `git add`: Add file contents to the index.
 0. `git commit -m`: Record changes to the repository.
 0. `git push`: Update remote refs along with associated objects.
+
 0. `git pull`: Fetch from and merge with another repository or a local branch.
 
 - Note: suggested file size <50MB; limited <100MB.
+- Use `.gitignore` to specify intentionally untracked files that Git should ignore.
 
 **Portable batch system (PBS): schedular commands (Torque/Maui)**  
 

@@ -6,8 +6,6 @@
 *.o*
 *.e*
 
-# ignore output figures
-*.png
 
 # ignore test notebook
 *.ipynb

@@ -1,0 +1,25 @@
+#!/bin/bash
+#PBS -l mem=108gb
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=300:00:00
+#PBS -M [username]@scripps.edu
+#PBS -q stsi
+#PBS -m a
+
+cd $PBS_O_WORKDIR 
+
+inprefix=$(basename ${input} | sed 's/.vcf.gz//g')
+
+phased_vcf=${inprefix}_tmp/${inprefix}_phased_chr${chr}.vcf.gz
+ref_vcf=/gpfs/work/sfchen/1000G/ALL.chr${chr}.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.clean.vcf.gz
+my_map=data/genetic_map_hg19_withX.txt
+
+required_tools/rfmix \
+  -f ${phased_vcf} \
+  -r ${ref_vcf} \
+  -m data/1000G.tsv \
+  -g ${my_map}  \
+  -o ${inprefix}_tmp/${inprefix}_phased_chr${i} \
+  --chromosome=${chr} \
+  --n-threads=16
+

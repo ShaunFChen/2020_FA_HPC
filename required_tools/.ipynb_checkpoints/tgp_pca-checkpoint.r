@@ -10,9 +10,12 @@ df_ <- merge(df, pop, by.x = 'V1', by.y = 'IID')
 png("figure_tgp_pca.png", width = 6, height = 6, units = "in", res = 300)
 
 print({
-    ggplot(df_, aes(x = V3, y = V4, color = sup_pop)) + geom_point(size = 1, alpha = 0.5) + xlab("PC1") + ylab("PC2")
+    ggplot(df_, aes(x = V3, y = V4, color = sup_pop)) + 
+      geom_point(size = 1, alpha = 0.5) + xlab("PC1") + ylab("PC2")
 })
                     
 dev.off()
 
+
 print("output generated: figure_tgp_pca.png")
+write.table(df_, file = "pca_dataframe.csv", sep = ',')

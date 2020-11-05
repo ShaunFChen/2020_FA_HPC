@@ -103,7 +103,17 @@ Prerequisite on Garibaldi: `module load git-lfs`
 
 ### Unsupervised ancestry inference using PCA
 
+- Note: edit the mail address to your own one.
 
+Run:  
+
+```
+qsub -N PCA_TGP 0_TGP_PCA.pbs 
+```
+
+Expected output: `figure_tgp_pca.png`
+
+<p align="center"><img src="data/pca.png"/></p>
 
 ### Extra practice: supervised ancestry inference
 

@@ -65,7 +65,23 @@ Prerequisite on Garibaldi: `module load git-lfs`
 
 ## Job script template
 
+```ruby
+#!/bin/bash
+#PBS -l mem=4gb
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=12:00:00
+#PBS -M [username]@scripps.edu
+#PBS -m a
+#PBS –N job_name # (useful when jobs are listed) 
 
+# qsub –v month=,day= test.pbs
+
+module load R
+
+cd $PBS_O_WORKDIR # (instead of cd /gpfs/home/user_id)
+
+echo “Hello HPC!! Today is ${month} ${day}”
+```
 
 ## Case study
 

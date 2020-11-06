@@ -83,7 +83,7 @@ cd $PBS_O_WORKDIR # (instead of cd /gpfs/home/user_id)
 echo “Hello HPC!! Today is ${month} ${day}”
 ```
 
-## Case study
+## Case study on Gariabldi
 
 
 ### Requirements

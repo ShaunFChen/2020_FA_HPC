@@ -1,4 +1,4 @@
-# 2020 FA HPC - Garibaldi (Torque/Maui)
+# 2020 FA HPC - Garibaldi (SLURM)
 
 **Author: Shaun Chen**  
 **First created: 2020/10/25**
@@ -44,6 +44,8 @@ Prerequisite on Garibaldi: `module load git`
 
 0. `sbatch -u [username]`: Request  jobs  or  job steps from a comma separated list of users. 
 		
+		
+		
 0. `sbatch`: submit pbs job  
 		`-I`: Declares that the job is to be run "interactively".  
 		`-l`: Defines the resources that are required by the job and establishes a limit to the amount of resource that can be consumed. i.e. `mem=4gb`, `walltime=4:00:00`, `nodes=1:ppn=1`.  
@@ -51,6 +53,9 @@ Prerequisite on Garibaldi: `module load git`
 		`-m`: Defines the set of conditions under which the execution server will send a mail message about the job.  The mail_options argument is a string which consists of either the single character "n", or one or more of the characters "a", "b", and "e". `a` mail is sent when the job is aborted by the batch system. `b`  mail is sent when the job begins execution. `e`  mail is sent when the job terminates.  
 		`-N`: Declares a name for the job.  
 		`-v`: Expands the list of environment variables that are exported to the job. The variable list is a comma separated list of strings of the form variable or variable=value.  
+		
+		
+		
 0. `scancel`: used to signal or cancel jobs, job arrays or job steps.
 
 0. `module`: command interface to the Modules package  

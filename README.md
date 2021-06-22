@@ -39,18 +39,19 @@ Prerequisite on Garibaldi: `module load git-lfs`
 
 **Portable batch system (PBS): schedular commands (Torque/Maui)**  
 
-0. `usage`: display the current usage of the entire cluster
-0. `qstat`: show status of pbs batch jobs  
-		`-f [job_id]`: Specifies that a full status display be written to standard out.  
-		`-u [username]`: Specifies all of the user's job status.
-0. `qsub`: submit pbs job  
+0. `showuserjobs`: display the current usage of the entire cluster.
+0. `sinfo`: view information about Slurm nodes and partitions.
+
+0. `sbatch -u [username]`: Request  jobs  or  job steps from a comma separated list of users. 
+		
+0. `sbatch`: submit pbs job  
 		`-I`: Declares that the job is to be run "interactively".  
 		`-l`: Defines the resources that are required by the job and establishes a limit to the amount of resource that can be consumed. i.e. `mem=4gb`, `walltime=4:00:00`, `nodes=1:ppn=1`.  
 		`-M`: Declares the list of users to whom mail is sent by the execution server when it sends mail about the job.  
 		`-m`: Defines the set of conditions under which the execution server will send a mail message about the job.  The mail_options argument is a string which consists of either the single character "n", or one or more of the characters "a", "b", and "e". `a` mail is sent when the job is aborted by the batch system. `b`  mail is sent when the job begins execution. `e`  mail is sent when the job terminates.  
 		`-N`: Declares a name for the job.  
 		`-v`: Expands the list of environment variables that are exported to the job. The variable list is a comma separated list of strings of the form variable or variable=value.  
-0. `qdel`:  delete pbs batch job
+0. `scancel`: used to signal or cancel jobs, job arrays or job steps.
 
 0. `module`: command interface to the Modules package  
 		`av`: display all available modules
@@ -58,27 +59,28 @@ Prerequisite on Garibaldi: `module load git-lfs`
 		`unload`:  Remove modulefile(s) from the shell environment.  
 		`purge`: Unload all loaded modulefiles.  
 		
-**Portable batch system (PBS): schedular varaiables (Torque/Maui)**  
+**Simple Linux Utility for Resource Management (SLURM) Workload Manager**  
 
-0. `$PBS_O_WORKDIR`: Submit directory
 
 
 ## Job script template
 
 ```ruby
 #!/bin/bash
-#PBS -l mem=4gb
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=12:00:00
-#PBS -M [username]@scripps.edu
-#PBS -m a
-#PBS –N job_name # (useful when jobs are listed) 
+#SBATCH --time=24:00:00
+#SBATCH --mem=16G
+## SBATCH --nodes=1                   ### Node count required for the job
+## SBATCH --ntasks=1                  ### Number of tasks to be launched per Node
+## SBATCH --cpus-per-task=16
 
-# qsub –v month=,day= test.pbs
+# sbatch --export=month=,day= run_slurm.qsub
+# slurm will set the working directory with the job script by default.
 
-module load R
+module purge
+module load R 
 
-cd $PBS_O_WORKDIR # (instead of cd /gpfs/home/user_id)
+# always print the path of your working directory
+pwd
 
 echo “Hello HPC!! Today is ${month} ${day}”
 ```
@@ -114,8 +116,8 @@ echo “Hello HPC!! Today is ${month} ${day}”
 
 **Test case**
 
-- Human Genomce Diversity Project (HGDP)  
-	[http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGDP/](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGDP/)
+- 1000 Genomes Project
+	[http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/)
 
 ### Unsupervised ancestry inference using PCA
 
@@ -124,18 +126,19 @@ echo “Hello HPC!! Today is ${month} ${day}”
 Run:  
 
 ```
-qsub -N PCA_TGP 0_TGP_PCA.pbs 
+sbatch --job-name=PCA_TGP 0_TGP_PCA.slurm.sh 
 ```
 
 Expected output: `figure_tgp_pca.png`
 
 <p align="center"><img src="/data/pca.png?raw=true"/></p>
 
+
 ### Extra practice: supervised ancestry inference
 
 **0. (Optional) Convert personal 23andMe genetic data to VCF**
 
-It is sufficient to be done by `qsub -I`.
+It is sufficient to be done by `srun --pty bash -i`.
 
 ```
 bcftools convert --tsv2vcf ${input_txt_path} -f ${ref_fasta_path) -s ${subject_ID} -Oz -o ${output_filename}.vcf.gz

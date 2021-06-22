@@ -150,7 +150,7 @@ GRCh37 on Gariabldi: `/gpfs/work/sfchen/human_g1k_v37.fasta`
 sample input: `/gpfs/work/sfchen/HGDP`
 
 ```
-qsub -v input=[vcf_gz_path] 1_ancestry_inference.pbs
+sbatch --export=input=[vcf_gz_path] 1_ancestry_inference.slurm.sh
 ```
 
 sample metadata:

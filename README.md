@@ -37,7 +37,7 @@ Prerequisite on Garibaldi: `module load git`
 - Note: suggested file size <50MB; limited <100MB.
 - Use `.gitignore` to specify intentionally untracked files that Git should ignore.
 
-**Portable batch system (PBS): schedular commands (Torque/Maui)**  
+**Simple Linux Utility for Resource Management (SLURM) Workload Manager**  
 
 0. `showuserjobs`: display the current usage of the entire cluster.
 0. `sinfo`: view information about Slurm nodes and partitions.
@@ -59,9 +59,6 @@ Prerequisite on Garibaldi: `module load git`
 		`unload`:  Remove modulefile(s) from the shell environment.  
 		`purge`: Unload all loaded modulefiles.  
 		
-**Simple Linux Utility for Resource Management (SLURM) Workload Manager**  
-
-
 
 ## Job script template
 

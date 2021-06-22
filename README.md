@@ -89,8 +89,7 @@ echo “Hello HPC!! Today is ${month} ${day}”
 
 **Modules and shell tools**  
 
-- R (`module load R`)  
-	`ggplot2`
+- R (`module load R`) with `ggplot2`
 - python >= 3.6.3 (`module load python/3.6.3`)
 - [PLINK v2](https://www.cog-genomics.org/plink/2.0/) (`required_tools/plink2`)
 - [bcftools >= 1.9](http://samtools.github.io/bcftools/bcftools.html) (`module load samtools`)
@@ -118,10 +117,7 @@ echo “Hello HPC!! Today is ${month} ${day}”
 
 ### Unsupervised ancestry inference using PCA
 
-- Note: edit the mail address to your own one.
-
 Run:  
-
 ```
 sbatch --job-name=PCA_TGP 0_TGP_PCA.slurm.sh 
 ```

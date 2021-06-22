@@ -22,7 +22,7 @@ Basic introduction of high-performance computing (HPC) in Scripps Research. This
 
 **Git commands**  
 
-Prerequisite on Garibaldi: `module load git-lfs`
+Prerequisite on Garibaldi: `module load git`
 
 0. `git init`: Create an empty git repository or reinitialize an existing one.  
 0. `git clone`: Clone a repository into a new directory.

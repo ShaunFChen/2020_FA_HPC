@@ -121,7 +121,7 @@ echo “Hello HPC!! Today is ${month} ${day}”
 
 Run:  
 ```
-sbatch --job-name=PCA_TGP 0_TGP_PCA.slurm.sh 
+sbatch --job-name=PCA_TGP 0_TGP_PCA.slurm
 ```
 
 Expected output: `figure_tgp_pca.png`
@@ -147,7 +147,7 @@ GRCh37 on Gariabldi: `/gpfs/work/sfchen/human_g1k_v37.fasta`
 sample input: `/gpfs/work/sfchen/HGDP`
 
 ```
-sbatch --export=input=[vcf_gz_path] 1_ancestry_inference.slurm.sh
+sbatch --export=input=[vcf_gz_path] 1_ancestry_inference.slurm
 ```
 
 sample metadata:

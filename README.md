@@ -42,21 +42,18 @@ Prerequisite on Garibaldi: `module load git`
 0. `showuserjobs`: display the current usage of the entire cluster.
 0. `sinfo`: view information about Slurm nodes and partitions.
 
-0. `sbatch -u [username]`: Request  jobs  or  job steps from a comma separated list of users. 
+0. `squeue -u [username]`: Request jobs  or  job steps from a comma separated list of users. 
 		
+0. `srun --pty bash -i`: Request a job in interactive terminal mode.
 		
+0. `sbatch`: submit slurm job  
+		`--export=<environment variables [ALL] | NONE>`: Identify which environment variables from the submission environment are propagated to the launched application.
+		`--mem=<size[units]>`: Specify the real memory required per node.
+		`-t, --time=<time>`: Set a limit on the total run time of the job allocation.
+		`-J, --job-name=<jobname>`: Specify a name for the job allocation.
+		`-p, --partition=<partition_names>`: Request a specific partition for the resource allocation.
 		
-0. `sbatch`: submit pbs job  
-		`-I`: Declares that the job is to be run "interactively".  
-		`-l`: Defines the resources that are required by the job and establishes a limit to the amount of resource that can be consumed. i.e. `mem=4gb`, `walltime=4:00:00`, `nodes=1:ppn=1`.  
-		`-M`: Declares the list of users to whom mail is sent by the execution server when it sends mail about the job.  
-		`-m`: Defines the set of conditions under which the execution server will send a mail message about the job.  The mail_options argument is a string which consists of either the single character "n", or one or more of the characters "a", "b", and "e". `a` mail is sent when the job is aborted by the batch system. `b`  mail is sent when the job begins execution. `e`  mail is sent when the job terminates.  
-		`-N`: Declares a name for the job.  
-		`-v`: Expands the list of environment variables that are exported to the job. The variable list is a comma separated list of strings of the form variable or variable=value.  
-		
-		
-		
-0. `scancel`: used to signal or cancel jobs, job arrays or job steps.
+0. `scancel [job_id]`: used to signal or cancel jobs, job arrays or job steps.
 
 0. `module`: command interface to the Modules package  
 		`av`: display all available modules

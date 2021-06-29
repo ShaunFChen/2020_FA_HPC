@@ -1,11 +1,11 @@
 #!/bin/bash
-#PBS -l mem=108gb
-#PBS -l nodes=1:ppn=16
-#PBS -l walltime=48:00:00
-#PBS -M [username]@scripps.edu
-#PBS -m a
+#SBATCH --nodes=1                   ### Node count required for the job
+#SBATCH --ntasks=1                  ### Number of tasks to be launched per Node
+#SBATCH --cpus-per-task=16
+#SBATCH --time=48:00:00
+#SBATCH --mem=120G
 
-# qsub -v input= 1_ancestry_inference.pbs
+# sbatch --export=input= 1_ancestry_inference.slurm
 
 
 # Load essential module on Garibaldi

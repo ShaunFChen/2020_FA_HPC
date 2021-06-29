@@ -6,7 +6,7 @@
 
 Slide: `2021_summer_intern_boot_camp_HPC.pdf`
 
-Basic introduction of high-performance computing (HPC) in Scripps Research. This repository worked as class materials and was tested on Garibaldi only. *Shared large datasets will be deprecated at the end of the quarter.*
+Basic introduction of high-performance computing (HPC) in Scripps Research. This repository worked as class materials and was tested on Garibaldi only. *Shared large datasets was deprecated.*
 
 ## Cheat sheet
 

@@ -1,7 +1,7 @@
 # 2020 FA HPC - Garibaldi (SLURM)
 
 **Author: Shaun Chen**  
-**First created: 2020/10/25**
+**First created: 2020/10/25**  
 **Last updated: 2021/06/29**
 
 Slide: `2021_summer_intern_boot_camp_HPC.pdf`

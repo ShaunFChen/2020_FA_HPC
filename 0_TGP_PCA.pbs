@@ -1,9 +1,6 @@
 #!/bin/bash
-#PBS -l mem=8gb
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=24:00:00
-#PBS -M [username]@scripps.edu
-#PBS -m a
+#SBATCH --time=24:00:00
+#SBATCH --mem=8G
 
 
 # Load essential module on Garibaldi
@@ -17,7 +14,7 @@ cd $PBS_O_WORKDIR
 
 for i in {1..22}; do 
     echo "Extracting ancestry markers chr${i} of 1000G"
-    bcftools view /gpfs/work/sfchen/1000G/ALL.chr${i}.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.clean.vcf.gz \
+    bcftools view /mnt/stsi/stsi3/Internal/1000G/ref_panel/hg19/vcf/ALL.chr${i}.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.clean.vcf.gz \
       -R data/HDGP.lifted.sorted.fixref.bi.phased1KG.isec1KG.isec23andMe.geno.50-5-0.2_pairwise.pos \
       -Oz \
       -o TGP_chr${i}.vcf.gz
